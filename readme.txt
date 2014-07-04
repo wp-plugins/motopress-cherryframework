@@ -9,6 +9,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Extend MotoPress Content Editor plugin with CherryFramework shortcodes.
+
 == Description ==
 
 This plugin integrates CherryFramework shortcodes with the MotoPress Content Editor plugin
