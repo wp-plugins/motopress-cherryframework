@@ -13,11 +13,11 @@ class MPCherryShortcodeParser {
         $this->info = $info;
         $this->defaultValues = $info['defaultValues'];
 
-        if (file_exists ($file))
+        if (is_file($file))
         {
             $data = file_get_contents($file);
 
-            $pattern = '/^(frameworkShortcodeAtts=)(?P<data>(.*))(\};)/s';
+            $pattern = '/^(frameworkShortcodeAtts\s*=)(?P<data>(.*))(\};)/s';
             preg_match($pattern, $data, $matches);
             $data = $matches['data'] . "}";
 

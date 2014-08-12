@@ -9,6 +9,16 @@ add_filter('cherry_plugin_shortcode_output', 'motopress_cherry_lazy_load_output_
 // include php files
 add_action('motopress_render_shortcode', 'motopress_cherry_lazy_load_render_action', 10, 1);
 
+add_action('init', 'motopress_cherry_lazy_load_init');
+
+function motopress_cherry_lazy_load_init()
+{
+    if ( isset($_GET['motopress-ce']) && $_GET['motopress-ce'] === '1' ) {
+        global $cherry_lazy_load;
+        remove_filter( 'cherry_plugin_shortcode_output', array( $cherry_lazy_load, 'add_lazy_load_wrap' ), 9);
+    }
+}
+
 // filter shortcode output
 function motopress_cherry_lazy_load_output_filter($content, $atts, $shortcodename)
 {
@@ -18,9 +28,23 @@ function motopress_cherry_lazy_load_output_filter($content, $atts, $shortcodenam
 
         extract(shortcode_atts(addStyleAtts(), $atts));
 
-        $marginClasses = trim(getMarginClasses($margin));
+        $divId = '';
+        $script = '';
 
-        return '<div' . ( empty($marginClasses) ? '' : (' class="' . $marginClasses . '" ') ) . '>' . $content . '</div>';
+        if (
+            (isset($_GET['motopress-ce']) && $_GET['motopress-ce'] === '1') ||
+            (isset($_POST['action']) && $_POST['action'] === 'motopress_ce_render_shortcode')
+        ) {
+            if ($shortcodename == 'lazy_load_box') {
+                $uid = uniqid('lazy_load_');
+                $divId = ' id="' . $uid . '" ';
+                $script = '<script>jQuery("#' . $uid .' .lazy-load-box").removeClass("trigger").animate({"opacity":"1"}, 100);</script>';
+            }
+        }        
+
+        $classes = trim($mp_style_classes . getBasicClasses($shortcodename) . getMarginClasses($margin));
+
+        return '<div' . $divId . ( empty($classes) ? '' : (' class="' . $classes . '" ') ) . '>' . $content . '</div>' . $script;
     } else {
         return $content;
     }
@@ -88,9 +112,12 @@ function motopress_cherry_lazy_load_mp_library_action($motopressCELibrary)
     );
 }
 
-// include cherry lazy_load class file
 function motopress_cherry_lazy_load_render_action($shortcode)
 {
+    // include cherry lazy_load class file
     if ( file_exists(MOTOPRESS_CHERRYFRAMEWORK_PLUGIN_DIR . '../cherry-lazy-load/cherry-lazy-load.php') )
         include_once (MOTOPRESS_CHERRYFRAMEWORK_PLUGIN_DIR . '../cherry-lazy-load/cherry-lazy-load.php');
+
+    global $cherry_lazy_load;
+    remove_filter( 'cherry_plugin_shortcode_output', array( $cherry_lazy_load, 'add_lazy_load_wrap' ), 9);
 }

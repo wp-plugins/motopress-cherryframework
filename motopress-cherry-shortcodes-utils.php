@@ -1,7 +1,7 @@
 <?php
 
 function mapCherryShortcode($id, $label, $jsFile, $phpFile, $group = 'other', $position = null,
-    $icon = '', $defaultValues = null, $rewrite = false, $customRenderFunction = '')
+    $icon = '', $defaultValues = null, $rewrite = false, $customRenderFunction = '', $closeType = 'enclosed', $resize = 'horizontal')
 {
     global $motopress_cherry_shortcodes_map, $mpc_cherry_prefix;
 
@@ -17,14 +17,16 @@ function mapCherryShortcode($id, $label, $jsFile, $phpFile, $group = 'other', $p
         'render_function' => $customRenderFunction,
         'group' => $group,
         'icon' => $icon,
+        'closeType' => $closeType,
+        'resize' => $resize,
     );
 }
 
 /* code from MP */
 function addStyleAtts($atts = array()) {
     $styles = array(
-        'margin' => '',
-        //'custom_class' => ''
+        'mp_style_classes' => '',
+        'margin' => ''
     );
     $styles['classes'] = ''; //for support versions less than 1.4.6 where margin save in classes
 
@@ -83,4 +85,28 @@ function motopress_cherry_common_shortcode_renderer($atts, $content = null, $sho
     if (!empty($classes)) $classes = ' ' . $classes;
     if (!empty($custom_class)) $custom_class = ' ' . $custom_class;
     return '<div class="' . $shortcode_name . $classes . getMarginClasses($margin) . $custom_class . '">' . $result . '</div>';
+}
+
+function getBasicClasses($shortcodeName, $space = false) {
+    global $motopressCELibrary;
+    $result = '';
+    if (isset($motopressCELibrary) && !empty($shortcodeName)) {
+        $object = &$motopressCELibrary->getObject($shortcodeName);
+        if ($object) {
+            $styleClasses = &$object->getStyle('mp_style_classes');
+            if (array_key_exists('basic', $styleClasses) && !empty($styleClasses['basic'])) {
+                $classes = array();
+                if (!array_key_exists('class', $styleClasses['basic'])) {
+                    foreach ($styleClasses['basic'] as $value) {
+                        $classes[] = $value['class'];
+                    }
+                } else {
+                    $classes[] = $styleClasses['basic']['class'];
+                }
+                if (!empty($classes)) $result = implode(' ', $classes);
+                if (!empty($result) && $space) $result = ' ' . $result;
+            }
+        }
+    }
+    return $result;
 }

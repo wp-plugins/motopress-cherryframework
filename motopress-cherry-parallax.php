@@ -18,9 +18,9 @@ function motopress_cherry_parallax_output_filter($content, $atts, $shortcodename
 
         extract(shortcode_atts(addStyleAtts(), $atts));
 
-        $marginClasses = trim(getMarginClasses($margin));
+        $classes = trim($mp_style_classes . getBasicClasses($shortcodename) . getMarginClasses($margin));
 
-        return '<div' . ( empty($marginClasses) ? '' : (' class="' . $marginClasses . '" ') ) . '>' . $content . '</div>';
+        return '<div' . ( empty($classes) ? '' : (' class="' . $classes . '" ') ) . '>' . $content . '</div>';
     } else {
         return $content;
     }

@@ -17,5 +17,9 @@ This plugin integrates CherryFramework shortcodes with the MotoPress Content Edi
 == Changelog ==
 
 = 1.0 =
-
 * Initial release
+
+= 1.1 =
+* New shortcodes: google_map_api, tags, hr, content_box, extra_wrap
+* New TinyMCE style formats: text-highlight, dropcap, label, well, small
+* Minor bug fixes
