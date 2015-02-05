@@ -8,15 +8,31 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Extend MotoPress Content Editor plugin with CherryFramework shortcodes.
+Extend MotoPress Content Editor plugin with 30+ CherryFramework shortcodes.
 
 == Description ==
 
-This plugin integrates CherryFramework shortcodes with the MotoPress Content Editor plugin
+This plugin integrates MotoPress with themes based on Cherry Framework. **More than 30 new widgets** are available for you in MotoPress visual builder. The most widely used and popular are:
+
+* Service Box
+* Carousel
+* Google Map
+* Posts Grid
+* Roundabout
+* Content Box
+* Cherry Lazy Load
+* Cherry Parallax
+
+You can forget about code and shortcode parameters as by using this plugin you are able to edit your pages visually, create complex structures, set widgets and see the result at once. Created content will be displayed with the styles of your theme.
+
+All advantages can be estimated in WordPress themes on our website. More detailed information about Cherry Framework can be found [here](http://www.getmotopress.com/blog/drag-drop-premium-wordpress-themes-with-motopress-visual-builder/)
+
+**Note:** the integration plugin requires cherry-plugin version 1.2.5 and higher.
 
 == Screenshots ==
 
 1. screenshot-1.png
+2. screenshot-2.png
 
 == Changelog ==
 
