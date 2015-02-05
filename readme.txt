@@ -36,6 +36,9 @@ All advantages can be estimated in WordPress themes on our website. More detaile
 
 == Changelog ==
 
+= 1.3 =
+* Fixed an issue with PHP warning "Function split() is deprecated"
+
 = 1.2 =
 * Fixed Google Map sample data
 

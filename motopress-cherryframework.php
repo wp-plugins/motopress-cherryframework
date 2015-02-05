@@ -4,7 +4,7 @@
 * Plugin Name: MotoPress and CherryFramework Integration
 * Plugin URI: http://www.getmotopress.com/
 * Description: Extend MotoPress Content Editor plugin with CherryFramework shortcodes.
-* Version: 1.2
+* Version: 1.3
 * Author: MotoPress
 * Author URI: http://www.getmotopress.com/
 * License: GPL2 or later

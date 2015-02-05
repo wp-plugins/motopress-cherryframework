@@ -38,7 +38,7 @@ class MPCherryShortcodeParser {
 
             foreach ($your_array as $key => $value)
             {
-                $val = split(":", $value, 2);
+                $val = explode(":", $value, 2);
                 $valKey = trim($val[0]);
                 $valValue = isset($val[1]) ? $val[1] : "";
                 switch ($valKey) {
