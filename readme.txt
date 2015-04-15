@@ -1,7 +1,7 @@
 === MotoPress and CherryFramework Integration ===
 Contributors: MotoPress
 Donate link: http://www.getmotopress.com/
-Tags: motopress, cherry, cherryframework
+Tags: motopress, cherry, cherryframework, tinymce, shortcodes
 Requires at least: 3.5
 Tested up to: 4.0
 Stable tag: trunk
